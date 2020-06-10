@@ -1,0 +1,25 @@
+.hamster-pic {
+    height: 200px;
+}
+
+.hamster-pic:hover {
+    cursor: pointer;
+}
+
+#active-img{
+    border: 2px solid #AD5091;
+}
+h3 {
+    text-align: center;
+    color: #AD5091
+}
+.battle {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2em;
+    justify-content: center;
+}
+
+.name{
+    text-align: center;
+}

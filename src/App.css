@@ -1,38 +1,48 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F6FFFA;
+  height: 100vh;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #26797A;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(219, 253, 235);
+    padding: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header > h1{
+    padding: 0.4em;
+    margin: 0.2em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-header > nav {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(189, 247, 216);
+    color: rgb(27, 89, 90);
+    width: 100vw;
+    padding: 0;
+    font-size: 1.2em;
 }
+
+.App-header > nav > a{
+    margin-top: 0.5em;
+    padding: 0.7em;
+    margin: 0;
+    text-decoration: none;
+    color: rgb(22, 72, 73);
+}
+
+.App-header > nav > a:hover{
+    font-weight: bold;
+}
+
+.App-header > nav > .active {
+    background-color: #F6FFFA;
+}
+
