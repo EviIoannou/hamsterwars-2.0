@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../stylings/Battle.css';
 // import { useParams } from 'react-router-dom';
 
 const Battle = ({ hamsters }) =>{
     // const [{ id1, id2 }] = useParams();
+   
     const [winner, setWinner] = useState('');
     const [firstId, setFirstId] = useState(0);
     const [firstContestant, setFirstContestant] = useState('');
@@ -12,15 +13,28 @@ const Battle = ({ hamsters }) =>{
 
     const hamsterOptions = hamsters.map(h => (<option key={h.id} value={h.id}>{h.name}</option>))
 
-    setFirstContestant(hamsters.find(h=> h.id === firstId)) 
-    setSecondContestant(hamsters.find(h=> h.id === secondId))
-    
-    if(firstContestant === secondContestant !== 0){
-        console.log(firstContestant + 'cannot fight against himself!')
+    const chooseContestants = async () =>{
+        setWinner('');
+        if (firstId !==0) {await setFirstContestant(hamsters.find(h=> h.id === firstId))}
+        else if (firstId ===0) {setFirstContestant(await getRandomHamster())}
+        
+        if (secondId !== 0) {await setSecondContestant(hamsters.find(h=> h.id === secondId))}
+        else if (secondId === 0) {setSecondContestant(await getRandomHamster())} 
+        console.log(firstContestant + ' ' + secondContestant)
     }
+ 
+        useEffect(() =>{
+            async function getHamsters(){
+            setFirstContestant(await getRandomHamster());
+            setSecondContestant(await getRandomHamster());
+            }
+            getHamsters()
+        },[])
+     
+ 
     return(
         <section>
-            <form>
+            <div className="choose-contestants">
                 <select onChange={(e) => {setFirstId(Number(e.target.value))}}>
                     <option value='0'>Random</option>
                     {hamsterOptions}
@@ -30,25 +44,42 @@ const Battle = ({ hamsters }) =>{
                     {hamsterOptions}
                 </select>
                 {/* on click, send the id:s to parameters back to App */}
-                <button> Go! </button>
-            </form>
+                <button onClick={chooseContestants}> Go! </button>
+            </div>
 
-            <h3>Winner is... {winner!== '' ? `hamster ${winner} !` : ''}</h3>
-            {/* render div with the two contestants; will start with random */}
+            <h3>Winner is... {winner!== '' ? ` ${winner.name} !` : ''}</h3>
+      
             <div className='battle'>
                 <div>
-                    <img className='hamster-pic' src="hamster-2.jpg" alt="first-contestant" 
-                    onClick={() =>setWinner(1)} id={winner ===1 ? 'active-img' : ''}/>
-                    <p className='name'> Hamster 1</p>
+                    <img className='hamster-pic' src={`http://localhost:2000/assets/${firstContestant.imgName}`} alt="first-contestant" 
+                    onClick={() =>setWinner(firstContestant)} 
+                    id={winner.id === firstContestant.id? 'active-img' : ''}/>
+                    <p className='name'> {firstContestant.name}</p>
                 </div>
                 <div>                 
-                    <img className='hamster-pic' src="hamster-3.jpg" alt="second-contestant" 
-                    onClick={() =>setWinner(2)} id={winner ===2 ? 'active-img' : ''}/>
-                    <p className='name'> Hamster 2</p>
+                    <img className='hamster-pic' src={`http://localhost:2000/assets/${secondContestant.imgName}`} alt="second-contestant" 
+                    onClick={() =>setWinner(secondContestant)} 
+                    id={winner.id === secondContestant.id ? 'active-img' : ''}/>
+                    <p className='name'> {secondContestant.name}</p>
                 </div>
             </div>
         </section>
     )
 }
 
+async function getRandomHamster() {
+    let baseUrl = '/api';
+    try{
+        const response = await fetch(baseUrl + '/hamsters/random')
+        const hamsterObject = await response.json();
+        console.log(hamsterObject.hamster)
+        return hamsterObject.hamster ;
+    }
+    catch(error){
+        console.log('Fetch failed. Error:', error)
+        return null;
+    }
+  }
+  
+ 
 export default Battle;

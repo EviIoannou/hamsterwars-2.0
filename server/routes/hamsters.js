@@ -26,8 +26,16 @@ router.get('/', async(req, res) => {
 
 //GET data for random hamster
 router.get('/random', async(req, res) => {
+    let allHamsters = [];
+    let hamsterData = await db.collection('hamsters').get();
+  
+       hamsterData.forEach(hamster => {
+        console.log(hamster.data())
+        allHamsters.push(hamster.data())
+       })
+
     let hamster = '';
-    let id = Math.floor(Math.random() * 40);
+    let id = Math.floor(Math.random() * allHamsters.length);
     let snapShot = await db.collection('hamsters').where("id", "==", id).get();
     try{
         snapShot.forEach(element => {

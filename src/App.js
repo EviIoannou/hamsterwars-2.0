@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink} from "react-router-dom"
 import './App.css';
 import Battle from './components/Battle';
 
 function App() {
-  const hamsters= [
-    {name:'Sixten', id: 1, pic:'hamster-1.jpg'},
-    {name: 'Sven', id: 2, pic:'hamster-2.jpg'},
-    {name: 'Ayla', id: 3, pic:'hamster-3.jpg'},
-    {name:'Aleena', id: 4, pic:'hamster-4.jpg'},
-    {name:'Tuss', id: 5, pic:'hamster-5.jpg'},
-    {name: 'Zigge', id: 6, pic:'hamster-6.jpg'}
-  ]
+  const [hamsters, setHamsters] = useState(null); 
+  
+   useEffect(() =>{
+    let baseUrl = '/api';
+    async function getHamsters() {
+    try{
+        const response = await fetch(baseUrl + '/hamsters')
+        const hamsterObject = await response.json();
+        console.log(hamsterObject.hamsters)
+        await setHamsters(hamsterObject.hamsters) ;
+    }
+    catch(error){
+        console.log('Fetch failed. Error:', error)
+        return null;
+    }
+  }
+  getHamsters();
+  }, [])
+
   return (
     <div className="App">
       <Router>
@@ -25,9 +36,9 @@ function App() {
                 <NavLink to="/upload" activeClassName="active">Uploads</NavLink>
             </nav>
         </header>
-        <main>
+        <main className="App-main">
             <Switch>
-                <Route path='/battle'><Battle hamsters={hamsters}/></Route>
+                <Route path='/battle'><Battle hamsters={hamsters ? hamsters : null}/></Route>
                 <Route path='/matchup'></Route>
                 <Route path='/statistics'></Route>
                 <Route path='/upload'></Route>
@@ -38,5 +49,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
