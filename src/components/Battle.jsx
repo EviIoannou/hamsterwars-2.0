@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../stylings/Battle.css';
+import HamsterOptions from './HamsterOptions';
 // import { useParams } from 'react-router-dom';
 
-const Battle = ({ hamsters }) =>{
+const Battle = () =>{
     // const [{ id1, id2 }] = useParams();
-   
+  
     const [winner, setWinner] = useState('');
     const [firstId, setFirstId] = useState(0);
     const [firstContestant, setFirstContestant] = useState('');
     const [secondId, setSecondId] = useState(0);
     const [secondContestant, setSecondContestant] = useState('');
-
-    const hamsterOptions = hamsters.map(h => (<option key={h.id} value={h.id}>{h.name}</option>))
 
     const chooseContestants = async () =>{
         setWinner('');
@@ -20,15 +19,16 @@ const Battle = ({ hamsters }) =>{
         
         if (secondId !== 0) { setSecondContestant(await getHamster(secondId))}
         else if (secondId === 0) {setSecondContestant(await getRandomHamster())} 
-        console.log(firstContestant + ' ' + secondContestant)
     }
 
     useEffect(() =>{
-        async function getHamsters(){
+
+        async function getInitialContestants(){
         setFirstContestant(await getRandomHamster());
         setSecondContestant(await getRandomHamster());
         }
-        getHamsters()
+        getInitialContestants()
+
     },[])
      
     let baseUrl;
@@ -46,11 +46,11 @@ const Battle = ({ hamsters }) =>{
             <div className="choose-contestants">
                 <select onChange={(e) => {setFirstId(Number(e.target.value))}}>
                     <option value='0'>Random</option>
-                    {hamsterOptions}
+                    <HamsterOptions />
                 </select>
                 <select onChange={(e) => {setSecondId(Number(e.target.value))}}>
                     <option value='0'>Random</option>
-                    {hamsterOptions}
+                    <HamsterOptions />
                 </select>
                 <button onClick={chooseContestants}> Go! </button>
             </div>

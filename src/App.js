@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink} from "react-router-dom"
 import './App.css';
 import Battle from './components/Battle';
 
 function App() {
-  const [hamsters, setHamsters] = useState(null); 
   
-   useEffect(() =>{
-    let baseUrl = '/api';
-    async function getHamsters() {
-    try{
-        const response = await fetch(baseUrl + '/hamsters')
-        const hamsterObject = await response.json();
-        console.log(hamsterObject.hamsters)
-        await setHamsters(hamsterObject.hamsters) ;
-    }
-    catch(error){
-        console.log('Fetch failed. Error:', error)
-        return null;
-    }
-  }
-  getHamsters();
-  }, [])
 
   return (
     <div className="App">
@@ -38,7 +21,7 @@ function App() {
         </header>
         <main className="App-main">
             <Switch>
-                <Route path='/battle'><Battle hamsters={hamsters ? hamsters : null}/></Route>
+                <Route path='/battle'><Battle/></Route>
                 <Route path='/matchup'></Route>
                 <Route path='/statistics'></Route>
                 <Route path='/upload'></Route>
