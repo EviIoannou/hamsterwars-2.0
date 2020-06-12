@@ -15,10 +15,10 @@ const Battle = ({ hamsters }) =>{
 
     const chooseContestants = async () =>{
         setWinner('');
-        if (firstId !==0) {await setFirstContestant(hamsters.find(h=> h.id === firstId))}
+        if (firstId !==0) { setFirstContestant(await getHamster(firstId))}
         else if (firstId ===0) {setFirstContestant(await getRandomHamster())}
         
-        if (secondId !== 0) {await setSecondContestant(hamsters.find(h=> h.id === secondId))}
+        if (secondId !== 0) { setSecondContestant(await getHamster(secondId))}
         else if (secondId === 0) {setSecondContestant(await getRandomHamster())} 
         console.log(firstContestant + ' ' + secondContestant)
     }
@@ -78,9 +78,8 @@ const Battle = ({ hamsters }) =>{
 
 
 async function getRandomHamster() {
-    let baseUrl = '/api';
     try{
-        const response = await fetch(baseUrl + '/hamsters/random')
+        const response = await fetch('api/hamsters/random')
         const hamsterObject = await response.json();
         console.log(hamsterObject.hamster)
         return hamsterObject.hamster ;
@@ -91,5 +90,16 @@ async function getRandomHamster() {
     }
   }
   
- 
+  async function getHamster(id) {
+    try{
+        const response = await fetch(`api/hamsters/${id}`)
+        const hamsterObject = await response.json();
+        console.log(hamsterObject.hamster)
+        return hamsterObject.hamster ;
+    }
+    catch(error){
+        console.log('Fetch failed. Error:', error)
+        return null;
+    }
+  }
 export default Battle;
