@@ -22,15 +22,24 @@ const Battle = ({ hamsters }) =>{
         else if (secondId === 0) {setSecondContestant(await getRandomHamster())} 
         console.log(firstContestant + ' ' + secondContestant)
     }
- 
-        useEffect(() =>{
-            async function getHamsters(){
-            setFirstContestant(await getRandomHamster());
-            setSecondContestant(await getRandomHamster());
-            }
-            getHamsters()
-        },[])
+
+    useEffect(() =>{
+        async function getHamsters(){
+        setFirstContestant(await getRandomHamster());
+        setSecondContestant(await getRandomHamster());
+        }
+        getHamsters()
+    },[])
      
+    let baseUrl;
+    if( process.env.NODE_ENV === 'production' ) {
+        // Heroku will know which port to use for pictures when we publish the app
+        baseUrl = '/';
+    }
+    else {  // use this port to fetch pictures from backend in development
+        baseUrl = 'http://localhost:2000/';
+    }
+    
  
     return(
         <section>
@@ -43,7 +52,6 @@ const Battle = ({ hamsters }) =>{
                     <option value='0'>Random</option>
                     {hamsterOptions}
                 </select>
-                {/* on click, send the id:s to parameters back to App */}
                 <button onClick={chooseContestants}> Go! </button>
             </div>
 
@@ -51,13 +59,13 @@ const Battle = ({ hamsters }) =>{
       
             <div className='battle'>
                 <div>
-                    <img className='hamster-pic' src={`http://localhost:2000/assets/${firstContestant.imgName}`} alt="first-contestant" 
+                    <img className='hamster-pic' src={`${baseUrl}assets/${firstContestant.imgName}`} alt="first-contestant" 
                     onClick={() =>setWinner(firstContestant)} 
                     id={winner.id === firstContestant.id? 'active-img' : ''}/>
                     <p className='name'> {firstContestant.name}</p>
                 </div>
                 <div>                 
-                    <img className='hamster-pic' src={`http://localhost:2000/assets/${secondContestant.imgName}`} alt="second-contestant" 
+                    <img className='hamster-pic' src={`${baseUrl}assets/${secondContestant.imgName}`} alt="second-contestant" 
                     onClick={() =>setWinner(secondContestant)} 
                     id={winner.id === secondContestant.id ? 'active-img' : ''}/>
                     <p className='name'> {secondContestant.name}</p>
@@ -65,7 +73,9 @@ const Battle = ({ hamsters }) =>{
             </div>
         </section>
     )
-}
+
+    }
+
 
 async function getRandomHamster() {
     let baseUrl = '/api';
