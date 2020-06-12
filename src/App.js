@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink} from "react-router-dom"
 import './App.css';
 import Battle from './components/Battle';
+import AllMatches from './components/AllMatches';
+import SpecificMatch from './components/SpecificMatch';
 
 function App() {
   
@@ -22,7 +24,8 @@ function App() {
         <main className="App-main">
             <Switch>
                 <Route path='/battle'><Battle/></Route>
-                <Route path='/matchup'></Route>
+                <Route path='/matchup'><AllMatches /></Route>
+                <Route path='/matchup/:matchId'><SpecificMatch /></Route>
                 <Route path='/statistics'></Route>
                 <Route path='/upload'></Route>
                 <Route path="/"></Route>

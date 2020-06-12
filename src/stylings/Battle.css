@@ -6,6 +6,12 @@
     cursor: pointer;
 }
 
+.battleArea{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
 .choose-contestants {
     margin-top: 0.5em;
     display: flex;
@@ -19,11 +25,14 @@
 .choose-contestants > * {
     margin: 0.5em;
     padding: 0.5em;
+    font-family: 'Montserrat', sans-serif;
   
 }
+
 #active-img{
     border: 2px solid #AD5091;
 }
+
 h3 {
     text-align: center;
     color: #AD5091

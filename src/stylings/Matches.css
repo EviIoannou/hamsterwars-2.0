@@ -1,0 +1,23 @@
+.all-matches {
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: #AD5091;
+    height: 50vh;
+    width: 50vw;
+    align-self: center;
+}
+
+.all-matches > * {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.5em;
+    padding: 0.5em;
+    height: 7vh;
+}
+
+.all-matches > p, a {
+    color: rgb(219, 253, 235);
+    text-decoration: none;
+}

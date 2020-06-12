@@ -42,7 +42,7 @@ const Battle = () =>{
     
  
     return(
-        <section>
+        <section className="battleArea">
             <div className="choose-contestants">
                 <select onChange={(e) => {setFirstId(Number(e.target.value))}}>
                     <option value='0'>Random</option>
