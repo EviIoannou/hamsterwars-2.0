@@ -24,8 +24,9 @@ function App() {
         <main className="App-main">
             <Switch>
                 <Route path='/battle'><Battle/></Route>
-                <Route path='/matchup'><AllMatches /></Route>
                 <Route path='/matchup/:matchId'><SpecificMatch /></Route>
+                <Route path='/matchup'><AllMatches /></Route>
+                
                 <Route path='/statistics'></Route>
                 <Route path='/upload'></Route>
                 <Route path="/"></Route>

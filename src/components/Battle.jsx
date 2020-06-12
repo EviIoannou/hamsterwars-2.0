@@ -43,7 +43,9 @@ const Battle = () =>{
  
     return(
         <section className="battleArea">
+          
             <div className="choose-contestants">
+                <h3>Choose contestants</h3>
                 <select onChange={(e) => {setFirstId(Number(e.target.value))}}>
                     <option value='0'>Random</option>
                     <HamsterOptions />
