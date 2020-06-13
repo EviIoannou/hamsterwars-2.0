@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../stylings/Matches.css';
+import '../stylings/AllMatches.css';
 
 
 const AllMatches = () =>{

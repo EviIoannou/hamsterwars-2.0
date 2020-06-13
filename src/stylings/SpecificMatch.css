@@ -1,0 +1,12 @@
+.contestants {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.match-info{
+    margin-left: 1em;
+}
+
+.contestants img {
+    height: 200px;
+}

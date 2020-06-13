@@ -9,7 +9,16 @@ const router = new Router();
 router.post('/', async (req, res) => {
 
     let id = createId(4); // give each match an id
-    let contestants = req.body.contestants; // this array will include hamster objects from firestore
+    let contestantIds = req.body.contestants; // send contestant id:s to request body
+    let contestants=[];
+
+    //loop through the id:s sent and fetch the hamster objects
+    for (let i=0; i< contestantIds.length; i++){
+       let contestant = await getPlayer(contestantIds[i].id);
+        await console.log('contestant: ' + contestant.name)
+        await contestants.push(contestant)
+    }
+    
     let winner = "";
     let losers = [];
     
@@ -102,24 +111,6 @@ router.get('/:id', async (req, res) => {
    }
 
 })
-
-// router.get('/:id', async(req, res) => {
-//     let hamster = '';
-//     let snapShot = await db.collection('hamsters').where("id", "==", req.params.id*1).get();
-//     try{
-//         snapShot.forEach(element => {
-//          console.log(element.data())
-//          hamster = element.data()
-        
-//      })
-//      res.send(
-//          {hamster: hamster}
-//      ); 
-//      }
-//     catch(err){
-//         console.error(err)
-//     }
-// })
 
 
 module.exports = router;

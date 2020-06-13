@@ -71,10 +71,11 @@ function getTimestamp (){
     //get current date for the timestamp
     let today = new Date();
     let day = today.getDate();
-    let month = today.getMonth();
+    let month = today.getMonth() + 1;
     let year = today.getFullYear();
 
     let date = day + '/' + month + '/' + year;
+
     return date;
 }
 module.exports = { createId, getTimestamp, getPlayer, getWinner, updateData }
