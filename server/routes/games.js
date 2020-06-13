@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
    //update contestants' data with a function from the module gameFunctions
     await updateData(winnerId, 1, 0);
     losers.forEach(loser =>{ //update each defeated hamster
-      updateData(loser.id, 0, 1);  
+     updateData(loser.id, 0, 1);  
     })
     
     // get winner data again (updated)
@@ -43,7 +43,8 @@ router.post('/', async (req, res) => {
         id: id,
         timeStamp: getTimestamp(), //function to get today's timestamp
         contestants: contestants,
-        winner: winner
+        winner: winner,
+        losers: losers
     })
 
     let game = await db.collection('games').doc(id).get();
@@ -54,7 +55,8 @@ router.post('/', async (req, res) => {
         id: gameData.id,
         timeStamp: gameData.timeStamp,
         contestants: gameData.contestants,
-        winner: gameData.winner
+        winner: gameData.winner,
+        losers: gameData.losers
     })
  })
 
@@ -78,4 +80,46 @@ router.get('/', async (req, res) => {
    }
 
 })
+
+//GET data for game with requested id
+router.get('/:id', async (req, res) => {
+    let game = '' ;
+
+    let snapShot = await db.collection('games').where("id", "==", req.params.id).get();
+
+    try{
+       snapShot.forEach(element => {
+        console.log(element.data())
+        game = element.data()
+        })
+        res.send(
+            {game: game}
+        );
+    
+    }
+   catch(err){
+       console.error(err)
+   }
+
+})
+
+// router.get('/:id', async(req, res) => {
+//     let hamster = '';
+//     let snapShot = await db.collection('hamsters').where("id", "==", req.params.id*1).get();
+//     try{
+//         snapShot.forEach(element => {
+//          console.log(element.data())
+//          hamster = element.data()
+        
+//      })
+//      res.send(
+//          {hamster: hamster}
+//      ); 
+//      }
+//     catch(err){
+//         console.error(err)
+//     }
+// })
+
+
 module.exports = router;
