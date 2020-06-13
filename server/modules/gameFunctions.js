@@ -4,7 +4,7 @@ const { auth, db } = require('../firebase');
 function createId(length) {
 
     let id = '';
-    let chars = '0123456789';
+    let chars = '123456789';
 
     for (let i = 0; i < length; i++) {
         let rand = Math.floor(Math.random() * chars.length);

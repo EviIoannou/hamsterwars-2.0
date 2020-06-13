@@ -8,15 +8,18 @@ const router = new Router();
 //POST a new hamster war!
 router.post('/', async (req, res) => {
 
-    let id = createId(4); // give each match an id
+    let id = createId(5); // give each match an id
     let contestantIds = req.body.contestants; // send contestant id:s to request body
+    console.log(req.body.contestants)
     let contestants=[];
 
     //loop through the id:s sent and fetch the hamster objects
     for (let i=0; i< contestantIds.length; i++){
        let contestant = await getPlayer(contestantIds[i].id);
+       
         await console.log('contestant: ' + contestant.name)
         await contestants.push(contestant)
+        await (console.log(contestants))
     }
     
     let winner = "";
