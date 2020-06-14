@@ -71,5 +71,48 @@ router.get('/:id', async(req, res) => {
     }
 })
 
+//POST a new hamster!
+router.post('/', async (req, res) => {
+    let id= req.body.id;
+    let name = req.body.name;
+    let age = req.body.age;
+    let loves = req.body.loves;
+    let favFood = req.body.favFood;
+    let imgName = req.body.imgName
+
+    //Save the game in a 'hamsters' collection
+    await db.collection('hamsters').add({
+        id: Number(id),
+        name: name,
+        age: Number(age),
+        loves: loves,
+        favFood : favFood,
+        imgName: imgName,
+        games: 0,
+        wins: 0,
+        defeats: 0
+    })
+    
+    let hamster ='';
+    let hamsterData = await db.collection('hamsters').where("id", "==", id*1).get();
+    console.log(hamsterData)
+    try{
+        await hamsterData.forEach(element => {
+         console.log(element.data())
+         hamster = element.data()
+        
+     })
+     res.send({
+        msg: `${name} is ready for hamsterwars! `,
+        hamster: hamster
+    })
+    }
+   
+    catch(err){
+        console.error(err)
+    }
+  
+ })
+
 
 module.exports = router ; 

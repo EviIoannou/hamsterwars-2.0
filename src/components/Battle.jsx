@@ -11,10 +11,12 @@ const Battle = () =>{
     const [firstContestant, setFirstContestant] = useState('');
     const [secondId, setSecondId] = useState(0);
     const [secondContestant, setSecondContestant] = useState('');
+    const [gameId, setGameId]= useState (0);
 
     const sameContestantError = firstId===secondId && firstId!==0;
     const chooseContestants = async () =>{
         setWinner('');
+        setGameId(0);
         if (firstId !==0) { setFirstContestant(await getHamster(firstId))}
         else if (firstId ===0) {setFirstContestant(await getRandomHamster())
         }
@@ -26,7 +28,7 @@ const Battle = () =>{
      async function postGame(hamster){
       try{
         setWinner(hamster)
-        await postGameData(firstContestant.id, secondContestant.id, hamster.id)
+        await postGameData(firstContestant.id, secondContestant.id, hamster.id, setGameId)
      }
 
      catch(err){
@@ -95,6 +97,7 @@ const Battle = () =>{
                     <p className='name'> {secondContestant.name}</p>
                 </div>
             </div>
+            <p className="game-id">{gameId!== 0 ?` Game with ID ${gameId} was created!` : null}</p>
         </section>
     )
 
@@ -127,7 +130,7 @@ async function getRandomHamster() {
     }
   }
 
-  function postGameData(first, second, winnerId) {
+  function postGameData(first, second, winnerId, setGameId) {
       const data = { contestants: [{id : first}, {id : second}], winner: winnerId }
       console.log(data)
     fetch('api/games', {
@@ -140,6 +143,7 @@ async function getRandomHamster() {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
+        setGameId(data.id)
       })
       .catch((error) => {
         console.error('Error:', error);

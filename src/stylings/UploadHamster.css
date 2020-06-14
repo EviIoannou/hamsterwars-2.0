@@ -1,0 +1,52 @@
+.upload-hamster {
+    margin-left: 1em;
+    align-self: center;
+}
+
+.upload-hamster h2{
+    text-align: center;
+    margin: 1.5em 0;
+    color: #AD5091;
+}
+
+.upload-hamster input{
+    width: 20vw;
+    padding: 0.8em;
+    
+}
+
+.upload-hamster input:focus {
+    border-color: #AD5091;
+}
+.upload-hamster button {
+    margin: 1em
+}
+
+.form-inputs{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2em;
+    row-gap: 1.5em;
+
+}
+
+.form-inputs .error{
+    margin: 0;
+    background-color: transparent;
+    color: rgb(214, 0, 0);
+    font-size: 0.8em;
+}
+
+
+.form-inputs .valid{
+    border: 1.4px solid rgb(10, 109, 10);
+    /* border-color: rgb(10, 109, 10); */
+}
+
+.form-inputs .invalid{
+    border: 1.4px solid rgb(214, 0, 0)
+}
+
+.form-inputs input[type=text]:focus {
+    border: 2px solid #AD5091;
+}

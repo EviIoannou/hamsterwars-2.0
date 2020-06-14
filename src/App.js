@@ -4,6 +4,7 @@ import './App.css';
 import Battle from './components/Battle';
 import AllMatches from './components/AllMatches';
 import SpecificMatch from './components/SpecificMatch';
+import UploadHamster from './components/UploadHamster';
 
 function App() {
   
@@ -28,7 +29,7 @@ function App() {
                 <Route path='/matchup'><AllMatches /></Route>
                 
                 <Route path='/statistics'></Route>
-                <Route path='/upload'></Route>
+                <Route path='/upload'><UploadHamster /></Route>
                 <Route path="/"></Route>
             </Switch>
         </main>
