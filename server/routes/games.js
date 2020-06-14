@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { auth, db } = require('./../firebase');
-const { createId, getTimestamp, getPlayer, getWinner, updateData } = 
+const { createId, gameDate, gameTime, getPlayer, getWinner, updateData } = 
 require('../modules/gameFunctions');
 
 const router = new Router();
@@ -53,7 +53,8 @@ router.post('/', async (req, res) => {
     //Save the game in a 'games' collection
     await db.collection('games').doc(id).set({
         id: id,
-        timeStamp: getTimestamp(), //function to get today's timestamp
+        gameDate: gameDate(), 
+        gameTime: gameTime(),
         contestants: contestants,
         winner: winner,
         losers: losers
@@ -65,7 +66,8 @@ router.post('/', async (req, res) => {
     res.send({
         msg: `Game ${id} is on! `,
         id: gameData.id,
-        timeStamp: gameData.timeStamp,
+        gameDate: gameDate(), 
+        gameTime: gameTime(),
         contestants: gameData.contestants,
         winner: gameData.winner,
         losers: gameData.losers

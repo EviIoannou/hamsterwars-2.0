@@ -66,16 +66,34 @@ async function getWinner(winnerId) { //choose a winner among contestants
 
     }
     
-
-function getTimestamp (){
+function gameDate (){
     //get current date for the timestamp
     let today = new Date();
     let day = today.getDate();
     let month = today.getMonth() + 1;
     let year = today.getFullYear();
-
-    let date = day + '/' + month + '/' + year;
-
+    
+    let date = day + '/' + month + '/' + year ; 
     return date;
 }
-module.exports = { createId, getTimestamp, getPlayer, getWinner, updateData }
+
+function gameTime () {
+    //get current time for the timestamp
+    let today = new Date();
+    let hour = (getlength(today.getHours())===2 ? today.getHours() : '0'+ today.getHours() )
+    let minutes = (getlength(today.getMinutes())=== 2 ? today.getMinutes() : '0'+ today.getMinutes() )
+    let seconds = (getlength(today.getSeconds())=== 2 ? today.getSeconds() : '0'+ today.getSeconds() )
+
+    
+    function getlength(number) {
+        return number.toString().length;
+    }
+
+    let time = hour + ':' + minutes + ':' + seconds;
+    return time;
+
+}
+
+
+
+module.exports = { createId, gameDate, gameTime, getPlayer, getWinner, updateData }

@@ -25,7 +25,8 @@ const SpecificMatch = () =>{
         <section className='specific-match'>
             <div className='match-info'>
                <p>Game ID: {match.id} </p> 
-               <p>Date: {match.timeStamp} </p> 
+               <p>Date: {match.gameDate} </p> 
+               <p>Time: {match.gameTime} </p> 
             </div>
             
             <div className="contestants">

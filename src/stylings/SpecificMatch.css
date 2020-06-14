@@ -1,12 +1,25 @@
-.contestants {
+
+.specific-match {
     display: flex;
-    justify-content: space-evenly;
 }
 
 .match-info{
     margin-left: 1em;
 }
-
 .contestants img {
     height: 200px;
+}
+
+.contestants {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1 1 auto;
+}
+
+.contestants .winner h3{
+    color: #AD5091;
+}
+
+.contestants .defeated h3 {
+    color: #26797A;
 }
