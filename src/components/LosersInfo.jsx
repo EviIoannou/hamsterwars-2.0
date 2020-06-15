@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LosersInfo = ({ losers }) => {
+const LosersInfo = ({ loser }) => {
     let baseUrl;
     if( process.env.NODE_ENV === 'production' ) {
         // Heroku will know which port to use for pictures when we publish the app
@@ -10,15 +10,15 @@ const LosersInfo = ({ losers }) => {
         baseUrl = 'http://localhost:2000/';
     }
     return (
-        losers.map (l => (
-            <div className="defeated">
+     
+            <div className="defeated" key={loser.id}>
                 <h3>Defeated</h3>
-                <p>{l.name}</p>
-                <p><img src={`${baseUrl}assets/${l.imgName}`} alt="defeated-hamster"/></p>
-                <p>Age: {l.age}</p>
-                <p>Defeats: {l.defeats}</p>
-                <p>Wins: {l.wins}</p>
-            </div>)) 
+                <p>{loser.name}</p>
+                <p><img src={`${baseUrl}assets/${loser.imgName}`} alt="defeated-hamster"/></p>
+                <p>Age: {loser.age}</p>
+                <p>Defeats: {loser.defeats}</p>
+                <p>Wins: {loser.wins}</p>
+            </div>
     )
 }
 

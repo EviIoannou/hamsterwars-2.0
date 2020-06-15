@@ -8,10 +8,10 @@ import WinnerInfo from './WinnerInfo';
 const SpecificMatch = () =>{
     const { matchId } = useParams();
     const [match, setMatch] = useState('')
-
+    console.log(match)
     console.log(match.contestants)
     console.log(match.winner)
-    console.log(match.losers)
+    console.log(match.loser)
 
     useEffect(() =>{ 
         async function getMatchData(){
@@ -31,7 +31,7 @@ const SpecificMatch = () =>{
             
             <div className="contestants">
                 {match!=='' ? <WinnerInfo winner={match.winner}/> : null}
-                {match!=='' ? <LosersInfo losers={match.losers}/> : null}
+                {match!=='' ? <LosersInfo loser={match.loser}/> : null}
                 
             </div>
         </section>

@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink} from "react-router-dom"
 import './App.css';
-import Battle from './components/Battle';
 import AllMatches from './components/AllMatches';
 import SpecificMatch from './components/SpecificMatch';
 import UploadHamster from './components/UploadHamster';
+import BattleWithParams from './components/BattleWithParams';
+import BattleRandom from './components/BattleRandom';
+// import Stats from './components/Stats';
 
 function App() {
   
@@ -18,17 +20,18 @@ function App() {
                 <NavLink exact to="/" activeClassName="active">Start</NavLink>
                 <NavLink to="/battle" activeClassName="active">Battle</NavLink>
                 <NavLink to="/matchup" activeClassName="active">Results</NavLink>
-                <NavLink to="/statistics" activeClassName="active">Statistics</NavLink>
+                <NavLink to="/stats" activeClassName="active">Statistics</NavLink>
                 <NavLink to="/upload" activeClassName="active">Uploads</NavLink>
             </nav>
         </header>
         <main className="App-main">
             <Switch>
-                <Route path='/battle'><Battle/></Route>
+                <Route path='/battle/:id1/:id2'><BattleWithParams /></Route>
+                <Route path='/battle'> <BattleRandom /></Route>
                 <Route path='/matchup/:matchId'><SpecificMatch /></Route>
                 <Route path='/matchup'><AllMatches /></Route>
                 
-                <Route path='/statistics'></Route>
+                <Route path='/stats'> </Route>
                 <Route path='/upload'><UploadHamster /></Route>
                 <Route path="/"></Route>
             </Switch>

@@ -19,11 +19,11 @@ router.post('/', async (req, res) => {
        
         await console.log('contestant: ' + contestant.name)
         await contestants.push(contestant)
-        await (console.log(contestants))
+        // await (console.log(contestants))
     }
     
     let winner = "";
-    let losers = [];
+    let losers = "";
     
     winner = await getWinner(req.body.winner); //choose a player id; this player is the winner
     let winnerId = winner.id;
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     contestants.forEach(contestant => {
         try{
           if (contestant.id != winnerId){ //loop through contestants; if id different than the winner's => contestant has lost
-            losers.push(contestant);
+            loser = contestant;
 
         }  
         }
@@ -43,13 +43,16 @@ router.post('/', async (req, res) => {
 
    //update contestants' data with a function from the module gameFunctions
     await updateData(winnerId, 1, 0);
-    losers.forEach(loser =>{ //update each defeated hamster
-     updateData(loser.id, 0, 1);  
-    })
+    await updateData(loser.id, 0, 1)
+
     
-    // get winner data again (updated)
+    // get winner and loser data again (updated)
     winner = await getPlayer(winnerId) 
-    
+    loser= await getPlayer(loser.id)
+
+    await console.log('wins: ' + winner.wins)
+    await console.log('defeats: ' + loser.defeats)
+
     //Save the game in a 'games' collection
     await db.collection('games').doc(id).set({
         id: id,
@@ -57,12 +60,13 @@ router.post('/', async (req, res) => {
         gameTime: gameTime(),
         contestants: contestants,
         winner: winner,
-        losers: losers
+        loser: loser
     })
 
     let game = await db.collection('games').doc(id).get();
     let gameData = game.data();
-    
+    console.log(game.data().winner)
+    // console.log('game data ' + gameData.winner + ' ' +gameData.loser)
     res.send({
         msg: `Game ${id} is on! `,
         id: gameData.id,
@@ -70,7 +74,7 @@ router.post('/', async (req, res) => {
         gameTime: gameTime(),
         contestants: gameData.contestants,
         winner: gameData.winner,
-        losers: gameData.losers
+        loser: gameData.loser
     })
  })
 

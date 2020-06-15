@@ -80,7 +80,7 @@ const UploadHamster = () =>{
                 </div>
                 
                 <div>
-                    <label>Loves to</label> <br/>
+                    <label>Hobby</label> <br/>
                     <input type="text" placeholder="What's your hamster's hobby?"
                     onChange={(e) => {setHobby(e.target.value)}}
                     onBlur={() => {setHobbyTouched(true)}}

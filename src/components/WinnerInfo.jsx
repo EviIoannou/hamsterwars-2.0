@@ -10,7 +10,7 @@ const WinnerInfo = ({ winner }) => {
         baseUrl = 'http://localhost:2000/';
     }
     return (
-        <div className="winner">
+        <div className="winner" key={winner.id}>
                 <h3>Winner</h3>
                 <p>{winner.name} </p>
                 <p><img src={`${baseUrl}assets/${winner.imgName}`} alt="winner"/></p>

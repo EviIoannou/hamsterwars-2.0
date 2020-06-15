@@ -24,9 +24,14 @@
 
 .all-matches > p, a {
     color: rgb(219, 253, 235);
-    text-decoration: none;
+    
 }
- 
+
+.all-matches  a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .matches-title{
     color: #AD5091;
     text-align: center;
