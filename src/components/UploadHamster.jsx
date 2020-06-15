@@ -35,13 +35,11 @@ const UploadHamster = () =>{
     useEffect(() =>{
     async function getHamsters() {
     try{
-        if(id!== ''){
          const response = await fetch('/api/hamsters')
         const hamsterObject = await response.json();
         console.log(hamsterObject.hamsters)
         await setHamsters(hamsterObject.hamsters)
-   
-        }
+  
         
     }
     catch(error){
@@ -50,7 +48,7 @@ const UploadHamster = () =>{
     }
     }
     getHamsters();
-    }, [id])
+    }, [idTouched, newHamster])
 
     return(
         <section className="upload-hamster">
