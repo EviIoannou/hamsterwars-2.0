@@ -7,7 +7,6 @@ const BattleContestants = ({ firstId, secondId }) =>{
     const [firstContestant, setFirstContestant] = useState('');
     const [secondContestant, setSecondContestant] = useState('');
     
-
       async function postGame(hamster){
       try{
         setWinner(hamster)
@@ -37,6 +36,10 @@ const BattleContestants = ({ firstId, secondId }) =>{
                 setFirstContestant(await getRandomHamster())
                 setSecondContestant(await getHamster(secondId))
             }
+            else if(firstId === secondId && firstId !== 0){
+                setFirstContestant('')
+                setSecondContestant('')
+            }
             else {
                 console.log('all custom'); 
                 setFirstContestant(await getHamster(firstId))
@@ -59,7 +62,10 @@ const BattleContestants = ({ firstId, secondId }) =>{
     
     return(
         <>
-        <h3>Winner is... {winner!== '' ? ` ${winner.name} !` : ''}</h3>
+        {firstContestant === secondContestant 
+            ? null
+            : <h3>Winner is... {winner!== '' ? ` ${winner.name} !` : ''}</h3>}
+        
       
         <div className='battle'>
             {firstContestant!=='' 
