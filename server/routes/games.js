@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
     }
     
     let winner = "";
-    let losers = "";
+    let loser = "";
     
     winner = await getWinner(req.body.winner); //choose a player id; this player is the winner
     let winnerId = winner.id;
