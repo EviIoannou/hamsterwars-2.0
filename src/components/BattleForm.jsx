@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import HamsterOptions from './HamsterOptions';
 
 const BattleForm = ({ firstOption, secondOption}) =>{
@@ -50,11 +50,12 @@ const BattleForm = ({ firstOption, secondOption}) =>{
             </p>
     </div>
     )
+
     function createLink(){
         if(firstId === 0 && secondId === 0) {
-            return <Link to='/battle' onClick={() => window.location.reload()}>Go random!</Link> }
+            return <Link to='/battle'> Go random!</Link> }
         else if(firstId !== 0 || secondId !== 0){
-            return <Link to={`/battle/${firstId}/${secondId}`} >Go custom!</Link>
+            return <Link to={`/battle/${firstId}/${secondId}`} > Go custom!</Link>
         }
     }
 }

@@ -19,13 +19,13 @@ app.use('/api/hamsters', hamstersRoute);
 const statsRoute = require('./routes/stats');
 app.use('/api/stats', statsRoute);
 
-// app.get('/*', function(req, res) {
-//     res.sendFile(path.join(__dirname, '/index.html'), function(err) {
-//       if (err) {
-//         res.status(500).send(err)
-//       }
-//     })
-//   })
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/../build/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
 //App listening to port 
 app.listen(serverPort, () => {
     console.log(`Get ready for hamster wars on port ${serverPort}!`)
