@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import HamsterStats from './HamsterStats';
-import '../stylings/Stats.css'
+import '../stylings/Stats.css';
+import StatsError from './StatsError';
+
 const Stats = () =>{
     const [totalGames, setTotalGames] = useState(0)
 
@@ -23,13 +25,17 @@ const Stats = () =>{
 
     return (
         <section className="stats">
-            <h2>Game statistics</h2>
-            <div> Total games:  {totalGames}</div>
-            {totalGames < 10 ? 'No stats' : 'Yay stats'}
-            <div className="top-bottom-hamsters">
-              <HamsterStats title='Top 5' fetchUrl='/api/charts/top'/>
-              <HamsterStats title='Bottom 5' fetchUrl='/api/charts/bottom'/>  
+           
+            <div className="total-games"> 
+            <p>Total matches:  {totalGames}</p> 
             </div>
+            {totalGames < 10
+            ?<StatsError />
+            :<><div className="top-bottom-hamsters">
+                    <HamsterStats title='Top 5 - most wins' fetchUrl='/api/charts/top' id='top'/>
+                    <HamsterStats title='Top 5 - most defeats' fetchUrl='/api/charts/bottom' id='bottom'/>
+                </div></>}
+  
         </section>
     )
 }
