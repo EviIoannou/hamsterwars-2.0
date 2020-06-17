@@ -27,7 +27,7 @@ const UploadHamster = () =>{
     let [favFoodClass, favFoodError] = favFoodTouched ? validateText(favFood) : ['', '']
     let [picClass, picError] = picTouched ? validateFile(pic) : ['', '']
 
-    // if all fields are field in and they are valid, then the form is valid
+    // if all fields are filled in and they are valid, then the form is valid
     let formIsValid = nameTouched && idTouched && ageTouched && hobbyTouched && favFoodTouched && picTouched
                 && (nameError=== '') && (idError === '') && (ageError === '') && (hobbyError === '')
                 && (favFoodError === '') && (picError === '')
@@ -129,8 +129,8 @@ const UploadHamster = () =>{
             if (age === '') {return ['invalid', 'This field cannot be empty']}
             else if(ageAsNumber < 1) { return['invalid', 'Your hamster must be older than 0']}
             else if(isNaN(ageAsNumber)) {return ['invalid', 'Age can only include numbers']}
-            else if (age.includes('.')) {return ['invalid' , 'Age can only include integers']}
-            
+            else if(ageAsNumber % 1 != 0) {return ['invalid', 'Age can only be an integer']}
+
             else { return ['valid', '']}
     }
 
@@ -139,7 +139,9 @@ const UploadHamster = () =>{
             if (id === '') {return ['invalid', 'This field cannot be empty']}
             else if(id < 1) { return ['invalid', 'Id needs to be more than 0']}
             else if(isNaN(idAsNumber)) {return ['invalid', 'Id can only include numbers']}
+            else if(idAsNumber % 1 != 0) {return ['invalid', 'Id can only be an integer']}
             else if(hamsters.find(h => h.id === idAsNumber)!== undefined) {return ['invalid', 'Id already exists']}
+            
             else { return ['valid', '']}
     }
 
