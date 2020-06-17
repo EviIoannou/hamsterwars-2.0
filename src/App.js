@@ -6,6 +6,7 @@ import SpecificMatch from './components/SpecificMatch';
 import UploadHamster from './components/UploadHamster';
 import BattleWithParams from './components/BattleWithParams';
 import BattleRandom from './components/BattleRandom';
+import Stats from './components/Stats';
 // import Stats from './components/Stats';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
                 <Route path='/matchup/:matchId'><SpecificMatch /></Route>
                 <Route path='/matchup'><AllMatches /></Route>
                 
-                <Route path='/stats'> </Route>
+                <Route path='/stats'><Stats /></Route>
                 <Route path='/upload'><UploadHamster /></Route>
                 <Route path="/"></Route>
             </Switch>

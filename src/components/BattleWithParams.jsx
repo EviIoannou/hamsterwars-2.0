@@ -1,7 +1,5 @@
 import React from 'react';
 import '../stylings/Battle.css';
-// import HamsterOptions from './HamsterOptions';
-// import { Link } from 'react-router-dom';
 import BattleForm from './BattleForm';
 import BattleContestants from './BattleContestants';
 import { useParams } from 'react-router-dom'

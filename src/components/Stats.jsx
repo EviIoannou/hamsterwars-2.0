@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import HamsterStats from './HamsterStats';
+import '../stylings/Stats.css'
 const Stats = () =>{
     const [totalGames, setTotalGames] = useState(0)
 
@@ -10,9 +10,8 @@ const Stats = () =>{
         try{
             const response = await fetch('/api/stats/total')
             const gameObject = await response.json();
-            const allGames = gameObject.games;
-            console.log(allGames);
-         
+            console.log(gameObject)
+            setTotalGames(gameObject.totalGames)
         }
         catch(error){
             console.log('Fetch failed. Error:', error)
@@ -20,14 +19,17 @@ const Stats = () =>{
         }
       }
       getGames();
-      }, [])}
+      }, [])
+
     return (
         <section className="stats">
             <h2>Game statistics</h2>
-            <div> Total games:  </div>
-            <div> If less than ... games, show statsError.</div>
-            <div> Top 5 hamsters (hamsterStats component)</div>
-            <div> Bottom 5 hamsters (hamsterStats component)</div>
+            <div> Total games:  {totalGames}</div>
+            {totalGames < 10 ? 'No stats' : 'Yay stats'}
+            <div className="top-bottom-hamsters">
+              <HamsterStats title='Top 5' fetchUrl='/api/charts/top'/>
+              <HamsterStats title='Bottom 5' fetchUrl='/api/charts/bottom'/>  
+            </div>
         </section>
     )
 }

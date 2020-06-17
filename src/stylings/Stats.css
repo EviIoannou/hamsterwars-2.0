@@ -1,0 +1,25 @@
+.requested-hamsters {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
+    border: 1px solid gray;
+}
+
+.single-hamster img {
+    width: 10vw;
+    height: auto;
+}
+
+.single-hamster img:hover{
+    cursor: auto;
+}
+
+.top-bottom-hamsters {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1em;
+}
+
+.hamster-stats h3 {
+    text-align: center;
+}
