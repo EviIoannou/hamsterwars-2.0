@@ -8,7 +8,7 @@ const BattleForm = ({ firstOption, secondOption}) =>{
     const [secondId, setSecondId] = useState(Number(firstOption));
     const [firstId, setFirstId] = useState(Number(secondOption));
     const sameContestantError = firstId===secondId && firstId!==0;
-    let link = sameContestantError ? 'No link' : createLink();
+    let link = sameContestantError ? 'Go!' : createLink();
 
     useEffect(() =>{
         
@@ -53,9 +53,9 @@ const BattleForm = ({ firstOption, secondOption}) =>{
 
     function createLink(){
         if(firstId === 0 && secondId === 0) {
-            return <Link to='/battle'> Go random!</Link> }
+            return <Link to='/battle'> Go!</Link> }
         else if(firstId !== 0 || secondId !== 0){
-            return <Link to={`/battle/${firstId}/${secondId}`} > Go custom!</Link>
+            return <Link to={`/battle/${firstId}/${secondId}`} > Go!</Link>
         }
     }
 }
