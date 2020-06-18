@@ -40,13 +40,26 @@
 
 .form-inputs .valid{
     border: 1.4px solid rgb(10, 109, 10);
-    /* border-color: rgb(10, 109, 10); */
 }
 
 .form-inputs .invalid{
     border: 1.4px solid rgb(214, 0, 0)
 }
 
-.form-inputs input[type=text]:focus {
-    border: 2px solid #AD5091;
+.post-hamster{
+    padding: 0.8em;
+    background-color: #AD5091;
+    border: 1px solid #AD5091;
+    border-radius: 1em;
+    margin-left: 0.8em;
+    color: #fff6fc;
+    font-family: 'Montserrat', sans-serif;
 }
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #c4c4c4;
+  background-color: #dad8d8;
+  color: #949494;
+}
+

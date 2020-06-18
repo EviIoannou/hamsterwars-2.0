@@ -106,7 +106,7 @@ const UploadHamster = () =>{
                
             </div>
    
-            <button disabled={!formIsValid}
+            <button disabled={!formIsValid} className='post-hamster'
             onClick={() => (formIsValid ? postHamster() : null)}> 
                 Create hamster 
             </button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import '../stylings/SpecificMatch.css';
 import LosersInfo from './LosersInfo';
 import WinnerInfo from './WinnerInfo';
@@ -22,18 +22,24 @@ const SpecificMatch = () =>{
 
     return( 
         
-        <section className='specific-match'>
-            <div className='match-info'>
-               <p>Game ID: {match.id} </p> 
-               <p>Date: {match.gameDate} </p> 
-               <p>Time: {match.gameTime} </p> 
+        <section >
+            <div className='specific-match'>
+                <div className='match-info'>
+                    <p>Game ID: {match.id} </p> 
+                    <p>Date: {match.gameDate} </p> 
+                    <p>Time: {match.gameTime} </p> 
+                </div>
+                            
+                <div className="contestants">
+                    {match!=='' ? <WinnerInfo winner={match.winner}/> : null}
+                    {match!=='' ? <LosersInfo loser={match.loser}/> : null}
+                    
+                </div>
             </div>
-            
-            <div className="contestants">
-                {match!=='' ? <WinnerInfo winner={match.winner}/> : null}
-                {match!=='' ? <LosersInfo loser={match.loser}/> : null}
-                
-            </div>
+          
+            <button className='back-to-matches'>
+                <Link to='/matchup'> Back to all match results </Link>
+            </button>
         </section>
 
         )

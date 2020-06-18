@@ -7,6 +7,7 @@ import UploadHamster from './components/UploadHamster';
 import BattleWithParams from './components/BattleWithParams';
 import BattleRandom from './components/BattleRandom';
 import Stats from './components/Stats';
+import Start from './components/Start';
 // import Stats from './components/Stats';
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
                 
                 <Route path='/stats'><Stats /></Route>
                 <Route path='/upload'><UploadHamster /></Route>
-                <Route path="/"></Route>
+                <Route path="/"> <Start /></Route>
             </Switch>
         </main>
     </Router>

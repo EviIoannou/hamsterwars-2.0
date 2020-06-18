@@ -23,3 +23,17 @@
 .contestants .defeated h3 {
     color: #26797A;
 }
+
+.back-to-matches a{
+    color: #d2feff;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+
+.back-to-matches{
+    padding: 0.8em;
+    background-color: #26797A;
+    border: 1px solid #26797A;
+    border-radius: 1em;
+    margin-left: 0.8em;
+}
