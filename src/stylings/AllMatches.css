@@ -54,3 +54,8 @@
     font-weight: bolder;
     
 }
+
+.no-matches-msg {
+    text-align: center;
+    line-height: 2em;
+}

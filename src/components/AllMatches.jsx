@@ -42,7 +42,7 @@ const AllMatches = () =>{
                 {games}</select> 
                 <p className="fetch-match"><Link to={`/matchup/${link}`} >Get match details</Link></p>
                 </>
-            : <p className='no-matches-msg'> No match data available yet. Start a new hamsterwar 
+            : <p className='no-matches-msg'> No match data available yet. <br/> Start a new hamsterwar 
                 <Link to ="/battle"> here </Link>!
             </p>
             }
