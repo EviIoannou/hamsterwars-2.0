@@ -6,9 +6,10 @@
     align-items: center;
     padding: 1em;
     background-color: #AD5091;
-    height: 50vh;
-    width: 50vw;
+    height: 35vh;
+    width: 35vw;
     align-self: center;
+    border-radius: 1em;
 }
 
 .all-matches > * {

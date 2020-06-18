@@ -10,7 +10,6 @@ router.post('/', async (req, res) => {
 
     let id = createId(5); // give each match an id
     let contestantIds = req.body.contestants; // send contestant id:s to request body
-    console.log(req.body.contestants)
     let contestants=[];
 
     //loop through the id:s sent and fetch the hamster objects
@@ -50,8 +49,6 @@ router.post('/', async (req, res) => {
     winner = await getPlayer(winnerId) 
     loser= await getPlayer(loser.id)
 
-    await console.log('wins: ' + winner.wins)
-    await console.log('defeats: ' + loser.defeats)
 
     //Save the game in a 'games' collection
     await db.collection('games').doc(id).set({
@@ -65,8 +62,7 @@ router.post('/', async (req, res) => {
 
     let game = await db.collection('games').doc(id).get();
     let gameData = game.data();
-    console.log(game.data().winner)
-    // console.log('game data ' + gameData.winner + ' ' +gameData.loser)
+
     res.send({
         msg: `Game ${id} is on! `,
         id: gameData.id,
@@ -85,7 +81,6 @@ router.get('/', async (req, res) => {
     let snapShot = await db.collection('games').get();
     try{
        snapShot.forEach(game => {
-        console.log(game.data())
         games.push(game.data())
         })
         res.send(
@@ -107,7 +102,6 @@ router.get('/:id', async (req, res) => {
 
     try{
        snapShot.forEach(element => {
-        console.log(element.data())
         game = element.data()
         })
         res.send(

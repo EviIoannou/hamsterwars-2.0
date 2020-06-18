@@ -64,6 +64,7 @@
 
 .stats-error{
     margin-top: 1em;
+    line-height: 2em;
     width: 40vw;
     text-align: center;
 }

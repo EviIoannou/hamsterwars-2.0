@@ -29,7 +29,6 @@ router.get('/random', async(req, res) => {
     let hamsterData = await db.collection('hamsters').get();
   
        hamsterData.forEach(hamster => {
-        console.log(hamster.data())
         allHamsters.push(hamster.data())
        })
 
@@ -38,7 +37,6 @@ router.get('/random', async(req, res) => {
     let snapShot = await db.collection('hamsters').where("id", "==", id).get();
     try{
         snapShot.forEach(element => {
-         console.log(element.data())
          hamster = element.data()
         
      })
@@ -57,7 +55,6 @@ router.get('/:id', async(req, res) => {
     let snapShot = await db.collection('hamsters').where("id", "==", req.params.id*1).get();
     try{
         snapShot.forEach(element => {
-         console.log(element.data())
          hamster = element.data()
         
      })
@@ -94,10 +91,9 @@ router.post('/', async (req, res) => {
     
     let hamster ='';
     let hamsterData = await db.collection('hamsters').where("id", "==", id*1).get();
-    console.log(hamsterData)
+    
     try{
         await hamsterData.forEach(element => {
-         console.log(element.data())
          hamster = element.data()
         
      })
