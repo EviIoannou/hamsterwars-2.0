@@ -6,7 +6,6 @@ async function totalGames(){
     let allData = await db.collection('games').get();
     allData.forEach(element =>{
         games.push(element.data())
-        console.log(games.length)
     })
     return games.length;
 }

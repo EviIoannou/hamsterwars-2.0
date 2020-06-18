@@ -22,17 +22,14 @@ const BattleContestants = ({ firstId, secondId }) =>{
     useEffect(() =>{
         async function getContestants () {
             if(firstId === 0 && secondId === 0) {
-                console.log('all random'); 
                 setFirstContestant( await getRandomHamster())
                 setSecondContestant( await getRandomHamster())
             }
             else if(firstId !==0 && secondId === 0) { 
-                console.log('first custom'); 
                 setFirstContestant(await getHamster(firstId))
                 setSecondContestant(await getRandomHamster())
             }
             else if(firstId === 0 && secondId !== 0) { 
-                console.log('second custom'); 
                 setFirstContestant(await getRandomHamster())
                 setSecondContestant(await getHamster(secondId))
             }
@@ -41,7 +38,6 @@ const BattleContestants = ({ firstId, secondId }) =>{
                 setSecondContestant('')
             }
             else {
-                console.log('all custom'); 
                 setFirstContestant(await getHamster(firstId))
                 setSecondContestant( await getHamster(secondId))  
         }}
@@ -100,7 +96,6 @@ const BattleContestants = ({ firstId, secondId }) =>{
         try{
             const response = await fetch('/api/hamsters/random')
             const hamsterObject = await response.json();
-            console.log(hamsterObject.hamster)
             return hamsterObject.hamster ;
         }
         catch(error){
@@ -112,7 +107,6 @@ const BattleContestants = ({ firstId, secondId }) =>{
         try{
             const response = await fetch(`/api/hamsters/${id}`)
             const hamsterObject = await response.json();
-            console.log(hamsterObject.hamster)
             return hamsterObject.hamster ;
         }
         catch(error){

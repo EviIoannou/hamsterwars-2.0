@@ -16,7 +16,6 @@ const BattleForm = ({ firstOption, secondOption}) =>{
         try{
             const response = await fetch('/api/hamsters')
             const hamsterObject = await response.json();
-            console.log(hamsterObject.hamsters)
             await setAllHamsters(hamsterObject.hamsters)
         }
         catch(error){

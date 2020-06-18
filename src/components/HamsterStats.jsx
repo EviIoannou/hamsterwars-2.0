@@ -10,7 +10,6 @@ const HamsterStats = ({ title, fetchUrl, id}) =>{
             try{
                 const response = await fetch(fetchUrl)
                 const hamstersObject = await response.json();
-                console.log(hamstersObject.hamsters)
                 setHamsters(hamstersObject.hamsters)
             }
             catch(error){
@@ -20,7 +19,7 @@ const HamsterStats = ({ title, fetchUrl, id}) =>{
           }
           getHamsters();
   
-    }, [])
+    }, [fetchUrl])
 
     let baseUrl;
     if( process.env.NODE_ENV === 'production' ) {

@@ -11,11 +11,11 @@ const Start = ()=> {
             </p>
             <div  className='start-intro'>
                 <h4>Get ready to play!</h4>
-                <p> Choose your hamsters to battle in <Link to='/battle'>'Battle' </Link> 
-                (random or custom) and click to choose the winner! In <Link to='/matchup'>'Results' </Link> 
-                you can see results from previous matches by using the match ID and in <Link to='/stats'>'Statistics' </Link>
+                <p> Choose your hamsters to battle in <Link to='/battle'>Battle </Link> 
+                (random or custom) and click to choose the winner! In <Link to='/matchup'>Results </Link> 
+                you can see results from previous matches by using the match ID and in <Link to='/stats'>Statistics </Link>
                 find out the top 5 winning and top 5 defeated contestants. Finally, why not create your
-                own hamster at <Link to='/upload'>'Uploads'</Link> to compete in hamsterwars?</p>
+                own hamster at <Link to='/upload'>Uploads</Link> to compete in hamsterwars?</p>
             </div>
         </section>
     )

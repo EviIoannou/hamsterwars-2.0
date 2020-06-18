@@ -37,7 +37,6 @@ const UploadHamster = () =>{
     try{
          const response = await fetch('/api/hamsters')
         const hamsterObject = await response.json();
-        console.log(hamsterObject.hamsters)
         await setHamsters(hamsterObject.hamsters)
   
         

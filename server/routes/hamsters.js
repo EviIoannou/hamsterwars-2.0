@@ -11,7 +11,6 @@ router.get('/', async(req, res) => {
     let snapShot = await db.collection('hamsters').get();
     try{
        snapShot.forEach(hamster => {
-        console.log(hamster.data())
         hamsters.push(hamster.data())
     })
     res.send(

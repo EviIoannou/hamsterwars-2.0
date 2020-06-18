@@ -1,17 +1,12 @@
 import React, { useState, useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../stylings/SpecificMatch.css';
-import LosersInfo from './LosersInfo';
-import WinnerInfo from './WinnerInfo';
+import ContestantInfo from './ContestantInfo';
 
 
 const SpecificMatch = () =>{
     const { matchId } = useParams();
     const [match, setMatch] = useState('')
-    console.log(match)
-    console.log(match.contestants)
-    console.log(match.winner)
-    console.log(match.loser)
 
     useEffect(() =>{ 
         async function getMatchData(){
@@ -28,18 +23,21 @@ const SpecificMatch = () =>{
                     <p>Game ID: {match.id} </p> 
                     <p>Date: {match.gameDate} </p> 
                     <p>Time: {match.gameTime} </p> 
+                    <button className='back-to-matches'>
+                <Link to='/matchup'> Back to all match results </Link>
+            </button>
                 </div>
                             
                 <div className="contestants">
-                    {match!=='' ? <WinnerInfo winner={match.winner}/> : null}
-                    {match!=='' ? <LosersInfo loser={match.loser}/> : null}
-                    
+                    {match!=='' 
+                    ? <><ContestantInfo contestant={match.winner} category='winner' title='Winner'/> 
+                        <ContestantInfo contestant={match.loser} category='defeated' title='Defeated'/> 
+                    </>
+                    :null}
                 </div>
             </div>
           
-            <button className='back-to-matches'>
-                <Link to='/matchup'> Back to all match results </Link>
-            </button>
+          
         </section>
 
         )
@@ -49,8 +47,7 @@ async function getMatch(id) {
     try{
         const response = await fetch(`/api/games/${id}`)
         const matchObject = await response.json();
-        console.log(matchObject.game)
-        console.log(matchObject.game.winner.name)
+
         return matchObject.game ;
     }
     catch(error){

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../stylings/Battle.css';
+
 import BattleForm from './BattleForm';
 import BattleContestants from './BattleContestants';
 import { useParams } from 'react-router-dom'

@@ -7,9 +7,12 @@
     margin-left: 1em;
 }
 .contestants img {
-    height: 200px;
+    height: 30vh;
 }
 
+.contestant-img{
+    height: 30vh;
+}
 .contestants {
     display: flex;
     justify-content: space-evenly;
@@ -35,5 +38,5 @@
     background-color: #26797A;
     border: 1px solid #26797A;
     border-radius: 1em;
-    margin-left: 0.8em;
+   
 }

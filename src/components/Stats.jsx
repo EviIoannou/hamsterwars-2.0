@@ -12,7 +12,6 @@ const Stats = () =>{
         try{
             const response = await fetch('/api/stats/total')
             const gameObject = await response.json();
-            console.log(gameObject)
             setTotalGames(gameObject.totalGames)
         }
         catch(error){

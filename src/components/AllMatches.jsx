@@ -7,14 +7,13 @@ const AllMatches = () =>{
     const [games, setGames] = useState(null)
     const [link, setLink] = useState('');
     useEffect(() =>{
-        let baseUrl = '/api';
-        
+      
         async function getGames() {
         try{
-            const response = await fetch(baseUrl + '/games')
+            const response = await fetch('/api/games')
             const gameObject = await response.json();
             const allGames = gameObject.games;
-            console.log(allGames);
+            
             if(allGames.length > 0){
                 setLink(allGames[0].id)
                 setGames(await allGames.map(g => (
